@@ -85,11 +85,11 @@ def generate_pdf():
     logging.debug(f"PDF saved as {pdf_file}")
 
     # Send Email with error handling
-    sender_email = "maxwelltagwirei@gmail.com"
+    sender_email = "USER_EMAIL_ADDRESS"
     msg = MIMEMultipart()
     msg['From'] = sender_email
     msg['To'] = email
-    msg['Subject'] = f"{title} from Chipfuwa Civil and Construction"
+    msg['Subject'] = f"{title} from COMPANY NAME"
     msg.attach(MIMEText(f"Attached is your {title} from Chipfuwa Civil and Construction.\n\nRegards, Maxwell", 'plain'))  # Added Regards, Maxwell
     with open(pdf_file, 'rb') as f:
         part = MIMEApplication(f.read(), Name=pdf_file)
@@ -99,7 +99,7 @@ def generate_pdf():
     try:
         with smtplib.SMTP('smtp.gmail.com', 587) as server:
             server.starttls()
-            server.login(sender_email, "nvghyjrvzwthpvvu")  # Replace with your App Password if different
+            server.login(sender_email, "PASSWORD")  # Replace with Special 2FA from gmail
             logging.debug(f"Sending email to {email}")
             server.send_message(msg)
             logging.debug(f"Email sent to {email}")
