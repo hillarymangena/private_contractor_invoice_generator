@@ -90,7 +90,7 @@ def generate_pdf():
     msg['From'] = sender_email
     msg['To'] = email
     msg['Subject'] = f"{title} from COMPANY NAME"
-    msg.attach(MIMEText(f"Attached is your {title} from Chipfuwa Civil and Construction.\n\nRegards, Maxwell", 'plain'))  # Added Regards, Maxwell
+    msg.attach(MIMEText(f"Attached is your {title} from Chipfuwa Civil and Construction.\n\nRegards, Sender_Name", 'plain'))  
     with open(pdf_file, 'rb') as f:
         part = MIMEApplication(f.read(), Name=pdf_file)
         part['Content-Disposition'] = f'attachment; filename="{pdf_file}"'
