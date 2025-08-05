@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chipfuwa Civil and Construction Invoice/Quotation Maker</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #fff5f5;
+      color: #333;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      text-align: center;
+    }
+    h2 {
+      color: #c0392b;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      width: 90%;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #c0392b;
+    }
+    input, select {
+      width: 85%;
+      padding: 12px;
+      margin: 5px auto;
+      border: 2px solid #e74c3c;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: #a93226;
+    }
+    table {
+      border-collapse: collapse;
+      width: 85%;
+      margin: 20px auto;
+      background-color: #ffffff;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    th, td {
+      border: 1px solid #e74c3c;
+      padding: 14px;
+      text-align: center;
+    }
+    th {
+      background-color: #c0392b;
+      color: #fff;
+      font-weight: bold;
+    }
+    button {
+      background-color: #e74c3c;
+      color: #fff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 5px;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #a93226;
+    }
+    #confirmation, #editForm {
+      background-color: #ffffff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+      width: 90%;
+    }
+    #details p {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Chipfuwa Civil and Construction Invoice/Quotation Maker</h2>
+  <div class="form-group">
+    <label>What are we making today?</label>
+    <select id="type" onchange="updateTitle()">
+      <option value="Invoice">Invoice</option>
+      <option value="Quotation">Quotation</option>
+    </select>
+    <p id="title">Selected: <span id="selectedTitle"></span></p>
+  </div>
+  <div class="form-group">
+    <label>Email to send to:</label>
+    <input type="email" id="email" placeholder="Enter email" required>
+  </div>
+  <div class="form-group" id="itemsForm">
+    <label>Item/Service:</label>
+    <input type="text" id="item" placeholder="e.g., Construction Work">
+    <label>Price:</label>
+    <input type="number" id="price" placeholder="e.g., 100" step="0.01">
+    <button onclick="addItem()">Add Item</button>
+    <button onclick="finishItems()" style="display:none;" id="doneBtn">Done</button>
+  </div>
+  <table id="itemsTable" style="display:none;">
+    <tr><th>Item</th><th>Price</th><th>Edit</th><th>Delete</th></tr>
+  </table>
+  <div id="confirmation" style="display:none;">
+    <h3>Confirm Details</h3>
+    <div id="details"></div>
+    <button onclick="confirmDetails('no')">Edit</button>
+    <button onclick="confirmDetails('yes')" id="sendBtn">Send</button>
+  </div>
+  <div id="editForm" style="display:none;">
+    <label>Edit Item:</label><input type="text" id="editItem">
+    <label>Edit Price:</label><input type="number" id="editPrice" step="0.01">
+    <input type="hidden" id="editIndex">
+    <button onclick="saveEdit()">Save</button>
+  </div>
+  <script src="/static/script.js"></script>
+</body>
+</html>
