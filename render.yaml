@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: invoice-flask
+    env: python
+    plan: free
+    buildCommand: ""
+    startCommand: python app_back.py
